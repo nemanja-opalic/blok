@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horn Sound Player</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Align buttons in a column */
+            height: 100vh;
+            background-color: #080606;
+            font-family: Arial, sans-serif;
+            gap: 20px; /* Add spacing between buttons */
+        }
+
+        button {
+            background-color:#b30000;
+            color: white;
+            border: none;
+            border: none;
+            width: 200px; /* Fixed width */
+            height: 60px; /* Fixed height */
+            font-size: 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        button:hover {
+            background-color: #b30000;
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+
+        button:active {
+            transform: scale(0.95); /* Add click effect */
+        }
+
+    </style>
+</head>
+<body>
+
+    <button id="playButton" data-audio="hornSound">🔊 Play Horn</button>
+    <audio id="hornSound" src="truck-horn-1-280798.mp3"></audio>
+
+    <button id="scepan1Button" data-audio="scepan1Audio">🔊 Scepan1</button>
+    <audio id="scepan1Audio" src="scepan1.wav"></audio>
+    
+    <button id="scepan2Button" data-audio="scepan2Audio">🔊 Scepan2</button>
+    <audio id="scepan2Audio" src="scepan2.wav"></audio>
+
+    <button id="airhornButton" data-audio="airhornAudio">🔊 AirHorn</button>
+    <audio id="airhornAudio" src="air-horn-186076.mp3"></audio>
+    
+    <button id="boathornButton" data-audio="boathornAudio">🔊 Boat Horn</button>
+    <audio id="boathornAudio" src="boat-horn-103003.mp3"></audio>
+
+    <button id="anaButton" data-audio="anaAudio">🔊 Glupa Ana</button>
+    <audio id="anaAudio" src="ana.wav"></audio>
+
+    <button id="perchit1Button" data-audio="perchit1Audio">🔊 Drum1</button>
+    <audio id="perchit1Audio" src="percussive-drum-hit-1-189787.mp3"></audio>
+    
+    <button id="perchit2Button" data-audio="perchit2Audio">🔊 Drum2</button>
+    <audio id="perchit2Audio" src="percussive-drum-hit-2-189788.mp3"></audio>
+
+    <button id="perchit4Button" data-audio="perchit2Audio">🔊 Drum4</button>
+    <audio id="perchit4Audio" src="percussive-drum-hit-4-189789.mp3"></audio>
+
+
+    <script>
+        document.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", function() {
+        const soundId = this.getAttribute("data-audio");
+        const sound = document.getElementById(soundId);
+        
+        if (sound) {
+            sound.pause(); // Pause if already playing
+            sound.currentTime = 0; // Restart audio
+
+            // Try to play and catch any errors (especially for mobile browsers)
+            sound.play().catch(error => {
+                console.log("Audio playback failed:", error);
+            });
+        }
+    });
+});
+
+    </script>
+
+</body>
+</html>
